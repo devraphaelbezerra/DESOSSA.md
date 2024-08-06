@@ -45,11 +45,11 @@ Foram encontrados casos de NF que se aproximam da geração de NF Fluig porém n
 
 ## ⚠️ Problemas enfrentados
 
-Listo abaixo os problemas enfrentados até chegarmos a esta maturidade no processo desossa.
+Listo abaixo os problemas enfrentados mais comuns de acontecer no processo desossa.
 
 ### Problema 1:
-Descrição do problema
-* Como solucionar: explicar a solução.
+NFe de entradas para cortes das agendas [727,5,101] vem com o mesmo número de Nota que já foi usado anteriormente, não processa os cortes e deve ser confirmado se realmente a NFe de prateleira 730 e 580 recebimento não foi gerada no retarda mesmo que em datas futuras.
+* Como solucionar: Este não é um "problema" no processo, e sim um problema operacional do fornecedor que gerou a NF com o mesmo número de outra NF usada anteriormente e também do recebimento do formosa/comprador que não força o mesmo a enviar número de notas corretas sem sequencias, deve-se acessar a tabela de controle NFe "fluig.ti_desossa_controle_nfe" e localizar a NFe de entrada pelo númeração que não processou, salvar as informações em alguma lugar seguro pois será usada futuramente, realizar o update na "fluig.ti_desossa_controle_nfe" na coluna "NOTA" alterar o número de NOTA para outro número próximo exemplo de:207551 para: 207551666 passando como filtro a filial, item, nota, dataNF e executar a desossa novamente, com isso programa de execução do fluig não vai mais achar este número de NF no not in da query de pendencias e executara/processará os cortes, após esta execução, deve-se voltar o número de nota exemplo realizando outro update de:207551666 para:207551.
 
 ### Problema 2:
 Descrição do problema
